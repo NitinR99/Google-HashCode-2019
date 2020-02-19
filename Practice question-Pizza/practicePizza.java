@@ -3,9 +3,6 @@ import java.util.*;
 
 class practicePizza
 {
-    //parse input file
-    //calculations
-    //write to output file
     static int[] calc(int max, int types, int[] inputs)
     {
         int sum=0;
