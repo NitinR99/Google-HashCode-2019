@@ -18,6 +18,7 @@ class practicePizza
                 arr.add(inputs[i]);
             }
         }
+        Collections.sort(arr);
         int b[]=arr.stream().mapToInt(Integer::intValue).toArray();
         return b;
     }
@@ -27,7 +28,7 @@ class practicePizza
 
         String input;
         int[] inputs;
-        BufferedReader br = new BufferedReader(new FileReader("input\\c_medium.in"));
+        BufferedReader br = new BufferedReader(new FileReader("input\\d_quite_big.in"));
         input=br.readLine();
         StringTokenizer st=new StringTokenizer(input);
 
@@ -46,10 +47,12 @@ class practicePizza
         //  System.out.println(inputs[k]);
         //}
         int result[]=calc(max,types,inputs);
-        System.out.println(result.length);
+        PrintWriter pw=new PrintWriter(new FileWriter("q4.txt"));
+        pw.println(result.length);
         for(int k=0;k<result.length;k++)
         {
-            System.out.print(result[k]+" ");
+            pw.print(result[k]+" ");
         }
+        pw.close();
     }
 }
