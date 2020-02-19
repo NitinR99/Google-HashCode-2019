@@ -6,12 +6,12 @@ class practicePizza
     //parse input file
     //calculations
     //write to output file
-    void calc()
+    void calc(int max, int types, int[] inputs)
     {
-        int no=17;
-        int types=4;
-        int a[]={2,5,6,8};
-
+        System.out.println(max+" "+types);
+        for(int k=0;k<inputs.length;k++) {
+            System.out.println(inputs[k]);
+        }
     }
 
     public static void main(String[] args) throws IOException
@@ -33,10 +33,10 @@ class practicePizza
         {
             inputs[i++]=Integer.parseInt(st.nextToken());
         }
-      System.out.println(max+" "+types);
-        for(int k=0;k<inputs.length;k++) {
-            System.out.println(inputs[k]);
-        }
-
+      //System.out.println(max+" "+types);
+        //for(int k=0;k<inputs.length;k++) {
+          //  System.out.println(inputs[k]);
+        //}
+        calc(max,types,inputs);
     }
 }
