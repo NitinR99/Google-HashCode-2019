@@ -6,30 +6,37 @@ class practicePizza
     //parse input file
     //calculations
     //write to output file
+    void calc()
+    {
+        int no=17;
+        int types=4;
+        int a[]={2,5,6,8};
+
+    }
 
     public static void main(String[] args) throws IOException
     {
 
         String input;
-        String[] inputs;
+        int[] inputs;
         BufferedReader br = new BufferedReader(new FileReader("input\\a_example.in"));
         input=br.readLine();
+        StringTokenizer st=new StringTokenizer(input);
 
-        inputs=input.split(" ");
-
-        int max = Integer.parseInt(inputs[0]);
-        int types = Integer.parseInt(inputs[1]);
-
-        System.out.println(max+" "+types);
-
+        int max = Integer.parseInt(st.nextToken());
+        int types = Integer.parseInt(st.nextToken());
+        inputs=new int[types];
         input=br.readLine();
-        inputs=input.split(" ");
-
-       int type0 = Integer.parseInt(inputs[0]);
-       int type1 = Integer.parseInt(inputs[1]);
-       int type2 = Integer.parseInt(inputs[2]);
-       int type3 = Integer.parseInt(inputs[3]);
-       System.out.println(type0+" "+type1+" "+type2+" "+type3);
+        st=new StringTokenizer(input);
+        int i=0;
+        while(st.hasMoreTokens())
+        {
+            inputs[i++]=Integer.parseInt(st.nextToken());
+        }
+      System.out.println(max+" "+types);
+        for(int k=0;k<inputs.length;k++) {
+            System.out.println(inputs[k]);
+        }
 
     }
 }
