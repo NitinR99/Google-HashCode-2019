@@ -2,6 +2,12 @@ import java.io.*;
 import java.util.*;
 class practicePizza
 {
+    private static LinkedList<Integer> Output;
+    private static LinkedList<Integer> inputs=new LinkedList<Integer>();
+    
+    private static int max, types;
+    private static  LinkedList<Integer> result=calc(max,types,inputs);
+    
     static LinkedList<Integer> calc(int max, int types, LinkedList<Integer> inputs)
     {
         int sum=0;
@@ -19,21 +25,41 @@ class practicePizza
     }
     public static void main(String[] args) throws IOException
     {
-        String input;
-        LinkedList<Integer> inputs=new LinkedList<Integer>();
-        BufferedReader br = new BufferedReader(new FileReader("d_quite_big.in"));
-        input=br.readLine();
-        StringTokenizer st=new StringTokenizer(input);
-        int max = Integer.parseInt(st.nextToken());
-        int types = Integer.parseInt(st.nextToken());
-        input=br.readLine();
-        st=new StringTokenizer(input);
-        while(st.hasMoreTokens())
+        String[] input = {"a_example", "b_small", "c_medium", "d_quite_big", "e_also_big"};
+        
+       
+        
+        for(int i = 0; i < input.length; i++)
         {
-            inputs.add(Integer.parseInt(st.nextToken()));
+            getInputFromTheFile(input[i]);
+          
+            writeToFile(input[i]);
         }
-        LinkedList<Integer> result=calc(max,types,inputs);
-        PrintWriter pw=new PrintWriter(new FileWriter("q4.txt"));
+        
+    }
+    
+    static void getInputFromTheFile(String inputName) throws IOException
+    {
+        
+               BufferedReader br = new BufferedReader(new FileReader(inputName + ".in"));
+        //String firstLine, secondLine;
+               inputName=br.readLine();
+               StringTokenizer st=new StringTokenizer(inputName);
+                max = Integer.parseInt(st.nextToken()); // maximum pizza slices that are required
+                types = Integer.parseInt(st.nextToken()); // the number of pizzas available
+               inputName=br.readLine();
+               st=new StringTokenizer(inputName);
+               while(st.hasMoreTokens())
+               {
+                   inputs.add(Integer.parseInt(st.nextToken()));
+               }
+        
+    }
+    
+    static void writeToFile(String inputName) throws IOException
+    {
+       
+        PrintWriter pw=new PrintWriter("output\\" + inputName + ".txt", "UTF-8");
         pw.println(result.size());
         for(int k=0;k<result.size();k++)
         {
