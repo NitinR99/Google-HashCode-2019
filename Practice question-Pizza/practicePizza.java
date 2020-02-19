@@ -6,7 +6,7 @@ class practicePizza
     //parse input file
     //calculations
     //write to output file
-    void calc(int max, int types, int[] inputs)
+    static void calc(int max, int types, int[] inputs)
     {
         System.out.println(max+" "+types);
         for(int k=0;k<inputs.length;k++) {
