@@ -42,10 +42,7 @@ class practicePizza
         {
             inputs[i++]=Integer.parseInt(st.nextToken());
         }
-        //System.out.println(max+" "+types);
-        //for(int k=0;k<inputs.length;k++) {
-        //  System.out.println(inputs[k]);
-        //}
+
         int result[]=calc(max,types,inputs);
         PrintWriter pw=new PrintWriter(new FileWriter("q4.txt"));
         pw.println(result.length);
