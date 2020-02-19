@@ -6,12 +6,20 @@ class practicePizza
     //parse input file
     //calculations
     //write to output file
-    void calc()
+    static int[] calc(int max, int types, int[] inputs)
     {
-        int no=17;
-        int types=4;
-        int a[]={2,5,6,8};
-
+        int sum=0;
+        LinkedList<Integer> arr= new LinkedList<Integer>();
+        for(int i=inputs.length-1;i>=0;i--)
+        {
+            if(!((sum+inputs[i])>max))
+            {
+                sum+=inputs[i];
+                arr.add(inputs[i]);
+            }
+        }
+        int b[]=arr.stream().mapToInt(Integer::intValue).toArray();
+        return b;
     }
 
     public static void main(String[] args) throws IOException
@@ -19,7 +27,7 @@ class practicePizza
 
         String input;
         int[] inputs;
-        BufferedReader br = new BufferedReader(new FileReader("input\\a_example.in"));
+        BufferedReader br = new BufferedReader(new FileReader("input\\c_medium.in"));
         input=br.readLine();
         StringTokenizer st=new StringTokenizer(input);
 
@@ -33,10 +41,15 @@ class practicePizza
         {
             inputs[i++]=Integer.parseInt(st.nextToken());
         }
-      System.out.println(max+" "+types);
-        for(int k=0;k<inputs.length;k++) {
-            System.out.println(inputs[k]);
+        //System.out.println(max+" "+types);
+        //for(int k=0;k<inputs.length;k++) {
+        //  System.out.println(inputs[k]);
+        //}
+        int result[]=calc(max,types,inputs);
+        System.out.println(result.length);
+        for(int k=0;k<result.length;k++)
+        {
+            System.out.print(result[k]+" ");
         }
-
     }
 }
