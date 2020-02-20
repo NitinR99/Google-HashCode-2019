@@ -1,0 +1,14 @@
+array <- for library scores
+libraryScore <- variable, calculated using [(booksTotal * shippingCap) / signupDays ] + pointsAvailInLib
+Queue <- for which lib to signup and what order
+
+while(days remaining)
+
+for each library: calculate/update score based on what books have already been scanned
+
+if (lib with highest score.signUpDays < daysRemaining)
+            then queue that library
+
+else (try next library until we find one that we can queue and get points out of before time runs out)
+
+then retry the while look
