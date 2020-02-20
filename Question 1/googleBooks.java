@@ -33,10 +33,11 @@ public class googleBooks
     public static void main(String[] args) throws IOException
     {
         int i = 0;
-        int k = 1;
+        int k = 0;
         int val1;
         int val2;
         int val3;
+        int val4;
         String c;
         String lib;
         String liby[];
@@ -61,34 +62,43 @@ public class googleBooks
                 c=st.nextToken();
                 val3=Integer.parseInt(c);
                 libber = new Library(counter,val1, val2, val3);
-
-                int k=calc(libber);
-
                 libList.add(libber);
+
+                lib = br.nextLine();
+                st = new StringTokenizer(lib);
+
+                while(st.hasMoreTokens()) {
+                    c=st.nextToken();
+                    val4=Integer.parseInt(c);
+                    k+=val4;
+                    set.add(val4);
+
+
+                }
+
+
+
+                int kr=calc(libber,k);
             }
-
-            lib = br.nextLine();
-            st = new StringTokenizer(lib);
-
-            while(st.hasMoreTokens()) {
-                c=st.nextToken();
-                val1=Integer.parseInt(c);
-                k*=val1;
-                set.add(val1);
-
-
-            }
-            i++;
+            k=0;
         }
+
+
+
+
 
 
     }
 
-    /* (num og boof*shipcap)/sindays + bookpointstotal */
-    public static int calc(Library libber) {
+    /* (num of book*shipcap)/signdays + bookpointstotal */
+    public static int calc(Library libber, int total) {
         int k=0;
 
-        libber.
+        int numBooks=libber.no_books;
+        int ship=libber.shipcap;
+        int signdays=libber.signup_days;
+
+        k=(numBooks*ship)/signdays + total;
 
         return k;
     }
