@@ -38,6 +38,7 @@ public class googleBooks
         int val2;
         int val3;
         int val4;
+        int val5;
         String c;
         String lib;
         String liby[];
@@ -46,7 +47,18 @@ public class googleBooks
         StringTokenizer st;
         String gen = br.nextLine();
         String scores = br.nextLine();
+
+        st = new StringTokenizer(scores);
+        ArrayList <Integer> hiFi = new ArrayList<Integer>();
+        while(st.hasMoreTokens()) {
+            c=st.nextToken();
+            val5=Integer.parseInt(c);
+            hiFi.add(val5);
+
+        }
+
         ArrayList <Library> libList = new ArrayList<Library>();
+        ArrayList <Integer> lowFi = new ArrayList<Integer>();
         Set<Integer> set = new HashSet<Integer>();
 
 
@@ -70,6 +82,7 @@ public class googleBooks
                 while(st.hasMoreTokens()) {
                     c=st.nextToken();
                     val4=Integer.parseInt(c);
+                    val4=hiFi.get(val4);
                     k+=val4;
                     set.add(val4);
 
@@ -79,13 +92,15 @@ public class googleBooks
 
 
                 int kr=calc(libber,k);
+                lowFi.add(kr);
             }
             k=0;
         }
 
 
 
-
+        System.out.println(lowFi);
+        System.out.println(set);
 
 
     }
