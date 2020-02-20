@@ -26,10 +26,11 @@ public class googleBooks
 {
     
     static int Book, Libraries, Days;
+     private static ArrayList<Integer> Input, Output;
     
     public static void main(String[] args)
     {
-        private static ArrayList<Integer> Input, Output;
+       
         
         
         String[] fileNames = {"a_example", "b_read_on", "c_incunabula", "d_tough_choices", "e_so_many_books"};
@@ -54,7 +55,23 @@ public class googleBooks
         
         BufferedReader fr = new BufferedReader(new FileReader(fileName + ".txt"));
         
-        String line, f
+        String line, firstLine;
+        firstLine = fr.readLine();
+        String[] vars;
+        vars = firstLine.split(" ");
+        
+        Books = Integer.valueOf(vars[0]); // the number of books
+        Libraries = Integer.valueOf(vars[1]); // the number of libraries
+        Days = Integer.valueOf(vars[2]); // the number of days for signup
+        
+        System.out.println("======= input of " + fileName);
+        System.out.println(Books + " " + Libraries + " " Num);
+        
+        while((line = fr.readLine()) != null)
+        {
+            
+            String 
+        }
         
         
         
