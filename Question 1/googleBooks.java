@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.StringTokenizer;
+import java.util.LinkedList;
+import java.util.Queue;
 
 class Library
 {
@@ -30,6 +32,7 @@ class Library
 public class googleBooks
 {
     static int counter=0;
+   private static Queue<Integer> order = new LinkedList<>();
     public static void main(String[] args) throws IOException
     {
         int i = 0;
@@ -43,7 +46,7 @@ public class googleBooks
         String lib;
         String liby[];
         Library libber;
-        Scanner br = new Scanner(new FileReader("C:\\Users\\a_example (1).txt"));
+        Scanner br = new Scanner(new FileReader("b_read_on.txt"));
         StringTokenizer st;
         String gen = br.nextLine();
         String scores = br.nextLine();
@@ -89,18 +92,30 @@ public class googleBooks
 
                 }
 
-
-
-                int kr=calc(libber,k);
+                
+               
+               
+                
+                
+                 int kr=calc(libber,k);
+                
+                order.add(kr);
+                
                 lowFi.add(kr);
+                
             }
             k=0;
         }
 
+        System.out.println("Elements of queue-"+order);
 
+        
 
         System.out.println(lowFi);
         System.out.println(set);
+        
+        
+        
 
 
     }
@@ -114,6 +129,8 @@ public class googleBooks
         int signdays=libber.signup_days;
 
         k=(numBooks*ship)/signdays + total;
+        
+        System.out.println(k);
 
         return k;
     }
