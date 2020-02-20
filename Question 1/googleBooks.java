@@ -70,7 +70,13 @@ public class googleBooks
         while((line = fr.readLine()) != null)
         {
             
-            String 
+            String scores[] line.split(" ");
+            
+            for(int i = 0; i < Books.length; i++)
+            {
+                Input.add(Integer.valueOf(scores[i]));
+                System.out.print(scores[i] + " ");
+            }
         }
         
         
