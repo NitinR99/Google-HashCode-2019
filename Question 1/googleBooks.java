@@ -9,12 +9,14 @@ import java.util.StringTokenizer;
 class Library
 {
     int id;
+    boolean isRegistered;
     int no_books;
     int signup_days;
     int shipcap;
     ArrayList<Integer> scoreBooks;
     Library(int identity, int numberbooks, int signupdays, int shippingcap)
     {
+        isRegistered=false;
         id=identity;
         no_books=numberbooks;
         signup_days=signupdays;
@@ -30,8 +32,7 @@ class Library
 public class googleBooks
 {
     static int counter=0;
-    public static void main(String[] args) throws IOException
-    {
+    public static void main(String[] args) throws IOException {
         int i = 0;
         int k = 0;
         int val1;
@@ -47,64 +48,63 @@ public class googleBooks
         StringTokenizer st;
         String gen = br.nextLine();
         String scores = br.nextLine();
-
         st = new StringTokenizer(scores);
-        ArrayList <Integer> hiFi = new ArrayList<Integer>();
-        while(st.hasMoreTokens()) {
-            c=st.nextToken();
-            val5=Integer.parseInt(c);
+        ArrayList<Integer> hiFi = new ArrayList<Integer>();//list of score of each book given as input
+        while (st.hasMoreTokens()) {
+            c = st.nextToken();
+            val5 = Integer.parseInt(c);
             hiFi.add(val5);
-
         }
-
-        ArrayList <Library> libList = new ArrayList<Library>();
-        ArrayList <Integer> lowFi = new ArrayList<Integer>();
+        ArrayList<Library> libList = new ArrayList<Library>();//list of libraries
+        ArrayList<Integer> lowFi = new ArrayList<Integer>(); //list of score for each library from chris equation
         Set<Integer> set = new HashSet<Integer>();
-
-
-
-        while(br.hasNextLine()){
+        while (br.hasNextLine()) {
             lib = br.nextLine();
             st = new StringTokenizer(lib);
-            while(st.hasMoreTokens()) {
-                c=st.nextToken();
-                val1=Integer.parseInt(c);
-                c=st.nextToken();
-                val2=Integer.parseInt(c);
-                c=st.nextToken();
-                val3=Integer.parseInt(c);
-                libber = new Library(counter,val1, val2, val3);
+            while (st.hasMoreTokens()) {
+                c = st.nextToken();
+                val1 = Integer.parseInt(c);
+                c = st.nextToken();
+                val2 = Integer.parseInt(c);
+                c = st.nextToken();
+                val3 = Integer.parseInt(c);
+                libber = new Library(counter, val1, val2, val3);
                 libList.add(libber);
-
                 lib = br.nextLine();
                 st = new StringTokenizer(lib);
-
-                while(st.hasMoreTokens()) {
-                    c=st.nextToken();
-                    val4=Integer.parseInt(c);
-                    val4=hiFi.get(val4);
-                    k+=val4;
+                while (st.hasMoreTokens()) {
+                    c = st.nextToken();
+                    val4 = Integer.parseInt(c);
+                    val4 = hiFi.get(val4);
+                    k += val4;
                     set.add(val4);
-
-
                 }
-
-
-
-                int kr=calc(libber,k);
+                int kr = calc(libber, k);
                 lowFi.add(kr);
             }
-            k=0;
+            k = 0;
         }
-
-
-
         System.out.println(lowFi);
+        System.out.println(hiFi);
         System.out.println(set);
 
+        /////////////////////////////////////////////////////////////////////////
+        //calculation part
+        int index=0;
+        int day_counter=0;
+        while(i<libList.size())
+        {
+
+        }
+        //start registering
+        //start scanning books from each registered library, number of books scanned depends on shipcap
+
+
+
+        /////////////////////////////////////////////////////////////////////////
+        //output part
 
     }
-
     /* (num of book*shipcap)/signdays + bookpointstotal */
     public static int calc(Library libber, int total) {
         int k=0;
