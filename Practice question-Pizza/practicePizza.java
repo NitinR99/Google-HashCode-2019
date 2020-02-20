@@ -1,27 +1,59 @@
 import java.io.*;
 import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
+
 class practicePizza
 {
-    private static LinkedList<Integer> Output;
-    private static LinkedList<Integer> inputs=new LinkedList<Integer>();
+   private static ArrayList<Integer> Input, Output;
     
-    private static int max, types;
-    private static  LinkedList<Integer> result=calc(max,types,inputs);
+    private static int MAX, Types, score = 0; // types is num
+   
     
-    static LinkedList<Integer> calc(int max, int types, LinkedList<Integer> inputs)
+    static ArrayList<Integer> calc(int max,  ArrayList<Integer> inputs)
     {
-        int sum=0;
-        LinkedList<Integer> arr= new LinkedList<Integer>();
-        for(int i=inputs.size()-1;i>=0;i--)
-        {
-            if(!((sum+inputs.get(i))>max))
-            {
-                sum+=inputs.get(i);
-                arr.add(inputs.get(i));
+        score = 0;
+       ArrayList<Integer> arr= new ArrayList<Integer>();
+        int sum = 0;
+        int j, i = inputs.size() - 1;
+        boolean test1 = true, test2 = true;
+        while (i >= 0 && test1) {
+            ArrayList<Integer> TempSolution = new ArrayList<Integer>();
+            j = i;
+            
+            while (j >= 0 && test2) {
+
+                int temp = inputs.get(j);
+                if (sum + temp < max) {
+                    sum = sum + temp;
+                    TempSolution.add(j);
+                } else if (sum + temp == max) {
+                    sum = sum + temp;
+                    TempSolution.add(j);
+                    test2 = false;
+                    test1 = false;
+                }
+                j--;
             }
+            if (score < sum) {
+                score = sum;
+                arr = TempSolution;
+            }
+            if (arr.size() == inputs.size()) {
+                test1 = false;
+
+            }
+
+            i--;
         }
-        Collections.sort(arr);
+
         return arr;
+       
     }
     public static void main(String[] args) throws IOException
     {
@@ -32,40 +64,54 @@ class practicePizza
         for(int i = 0; i < input.length; i++)
         {
             getInputFromTheFile(input[i]);
+            
+            Output = calc(MAX, Input);
+          Collections.reverse(Output);
           
             writeToFile(input[i]);
+            System.out.println("\nSCORE : " + score);
         }
         
     }
     
     static void getInputFromTheFile(String inputName) throws IOException
     {
-        
+        Input = new ArrayList<Integer>();
                BufferedReader br = new BufferedReader(new FileReader(inputName + ".in"));
-        //String firstLine, secondLine;
-               inputName=br.readLine();
-               StringTokenizer st=new StringTokenizer(inputName);
-                max = Integer.parseInt(st.nextToken()); // maximum pizza slices that are required
-                types = Integer.parseInt(st.nextToken()); // the number of pizzas available
-               inputName=br.readLine();
-               st=new StringTokenizer(inputName);
-               while(st.hasMoreTokens())
-               {
-                   inputs.add(Integer.parseInt(st.nextToken()));
-               }
+        String line, firstLine;
+               
+        firstLine = br.readLine();
+        String[] vars;
+        vars = firstLine.split(" ");
+
+        MAX = Integer.valueOf(vars[0]); // Maximum Pizza slices requires
+        Types = Integer.valueOf(vars[1]); // Number of Pizzas available
+        // Create the pizza list by reading the file
+        System.out.println("-------input of " + inputName);
+        System.out.println(MAX + " " + Types);
+        while ((line = br.readLine()) != null) {
+
+            String letters[] = line.split(" ");
+
+            for (int i = 0; i < letters.length; i++) {
+                Input.add(Integer.valueOf(letters[i]));
+                System.out.print(letters[i] + " ");
+            }
+        }
+        br.close();
         
     }
     
     static void writeToFile(String inputName) throws IOException
     {
        
-        PrintWriter pw=new PrintWriter("output\\" + inputName + ".txt", "UTF-8");
-        pw.println(result.size());
-        for(int k=0;k<result.size();k++)
-        {
-            //print output in terms of index in input
-            pw.print(inputs.indexOf(result.get(k))+" ");
-        }
-        pw.close();
+        PrintWriter pw=new PrintWriter("output_" + inputName + ".txt", "UTF-8");
+         pw.println(Output.size());
+                   System.out.println(Output.size());
+                   for (int i = 0; i < Output.size(); i++) {
+                       pw.print(Output.get(i) + " ");
+                       System.out.print(Output.get(i) + " ");
+                   }
+                   pw.close();
     }
 }
