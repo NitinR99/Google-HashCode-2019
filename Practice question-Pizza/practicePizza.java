@@ -8,7 +8,7 @@ class practicePizza
         LinkedList<Integer> arr= new LinkedList<Integer>();
         for(int i=inputs.size()-1;i>=0;i--)
         {
-            if(!((sum+inputs.get(i))>max))
+            if(!((sum+inputs.get(i))>max)&&!(arr.contains(inputs.get(i))))
             {
                 sum+=inputs.get(i);
                 arr.add(inputs.get(i));
@@ -21,7 +21,7 @@ class practicePizza
     {
         String input;
         LinkedList<Integer> inputs=new LinkedList<Integer>();
-        BufferedReader br = new BufferedReader(new FileReader("input\\e_also_big.in"));
+        BufferedReader br = new BufferedReader(new FileReader("input\\d_quite_big.in"));
         input=br.readLine();
         StringTokenizer st=new StringTokenizer(input);
         int max = Integer.parseInt(st.nextToken());
@@ -33,7 +33,7 @@ class practicePizza
             inputs.add(Integer.parseInt(st.nextToken()));
         }
         LinkedList<Integer> result=calc(max,types,inputs);
-        PrintWriter pw=new PrintWriter(new FileWriter("q5.txt"));
+        PrintWriter pw=new PrintWriter(new FileWriter("q4.txt"));
         pw.println(result.size());
         for(int k=0;k<result.size();k++)
         {
