@@ -40,6 +40,9 @@ public class googleBooks
         int val3;
         int val4;
         int val5;
+        int totaldays;
+        int totalbooks;
+        int totallibs;
         String c;
         String lib;
         String liby[];
@@ -47,6 +50,12 @@ public class googleBooks
         Scanner br = new Scanner(new FileReader("C:\\Users\\a_example (1).txt"));
         StringTokenizer st;
         String gen = br.nextLine();
+        st = new StringTokenizer(gen);
+        while (st.hasMoreTokens()) {
+            totalbooks=Integer.parseInt(st.nextToken());
+            totallibs=Integer.parseInt(st.nextToken());
+            totaldays=Integer.parseInt(st.nextToken());
+        }
         String scores = br.nextLine();
         st = new StringTokenizer(scores);
         ArrayList<Integer> hiFi = new ArrayList<Integer>();//list of score of each book given as input
@@ -91,12 +100,13 @@ public class googleBooks
         /////////////////////////////////////////////////////////////////////////
         //calculation part
         int index=0;
+        ArrayList<Integer> scannedBooks=new ArrayList<Integer>();//index of scanned books
         int day_counter=0;
-        while(i<libList.size())
-        {
-
+        while(i<libList.size()&& day_counter<=totaldays) {
+            //register day--
+            //scan books
+            day_counter++;
         }
-        //start registering
         //start scanning books from each registered library, number of books scanned depends on shipcap
 
 
