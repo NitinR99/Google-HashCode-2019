@@ -26,8 +26,6 @@ class Library
     {
         return "Library id:"+id+"\nNumber of books:"+no_books+"\nSignup days:"+signup_days+"\nShipping capacity:"+shipcap+"";
     }
-
-
 }
 public class googleBooks
 {
@@ -100,11 +98,27 @@ public class googleBooks
         /////////////////////////////////////////////////////////////////////////
         //calculation part
         int index=0;
+        int i=0,j=0;
         ArrayList<Integer> scannedBooks=new ArrayList<Integer>();//index of scanned books
+        ArrayList<Library> registered = new ArrayList<Library>();//registered libraries
         int day_counter=0;
-        while(i<libList.size()&& day_counter<=totaldays) {
+        while(day_counter<=totaldays) {
+            //pick library with highest score in lowfi
+            index=highindex(lowfi);
             //register day--
+            libList.get(index).signup_days--;
+            if(libList.get(index).signup_days==0)
+            {
+                registered.add(libList.get(index));
+
+
+            }
             //scan books
+            int j=0;
+            while(j<registered.size())//scanning of books for each library, depending on shipcap
+            {
+                registered.get(j)
+            }
             day_counter++;
         }
         //start scanning books from each registered library, number of books scanned depends on shipcap
@@ -126,5 +140,18 @@ public class googleBooks
         k=(numBooks*ship)/signdays + total;
 
         return k;
+    }
+    //might throw error
+    int highindex(LinkedList<Integer>A)
+    {
+        int x=0;
+        for(int i=0;i<A.size();i++)
+        {
+            if(x<A.get(i))
+            {
+                x=A.get(i);
+            }
+        }
+        return x;
     }
 }
